@@ -19,12 +19,12 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Blog Title 
-email: author_email@email.com 
+email: bekahwebb_email@email.com 
 description: "Change the description so that it describes your blog" 
-baseurl: "/stat386-blog-theme" # the name of the repository 
-url: "https://esnt.github.io" #  change this to "https://<your-github-username>.github.io"
+baseurl:  
+url: "https://bekahwebb.github.io" #  change this to "https://<your-github-username>.github.io"
 image: https://source.unsplash.com/random
-author: Your name
+author: Rebekah Webb
 copyright: ABCD # Your initials or what you want the copyright to be.  Leave empty for no copyright
 footer_description: 'The default image for the site header is a random image from 
         <a href="https://source.unsplash.com/random" target="_blank"> Unsplash</a>. 

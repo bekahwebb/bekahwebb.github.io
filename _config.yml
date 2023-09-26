@@ -18,9 +18,9 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Blog Title 
+title: Bekah's Beta Blog 
 email: bekahwebb@gmail.com 
-description: "Coding helps and insights" 
+description: "Coding helps and handy tools" 
 baseurl:  
 url: "https://wwww.bekahwebb.github.io" #  change this to "https://<your-github-username>.github.io"
 image: https://source.unsplash.com/random

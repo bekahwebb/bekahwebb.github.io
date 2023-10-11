@@ -58,10 +58,6 @@ df['Top speed'] = df['Top speed'].apply(lambda x: re.findall('\d+\.?\d*', x)[0])
 df['Top speed'] = df['Top speed'].astype(float)
 print(df.head())
 
-
-
-
-
 output
     Year       Make and model  Top speed Number built
 0  1894            Benz Velo       20.0         1200
@@ -129,8 +125,9 @@ I encourage you to use step 1 to find your own pages to scrape, and find the spe
 
 Now let's try web scraping news headlines from the BBC.
 
+```
 Here's my code:
-```import requests
+import requests
 from bs4 import BeautifulSoup
 
 # Step 1: Make an HTTP request to the news website
@@ -183,7 +180,7 @@ output
    URL: N/A
 ```
 Let's clean up this output a little bit.
-```
+
 ```import pandas as pd
 # Convert the list of dictionaries into a DataFrame
 df = pd.DataFrame(headlines)
@@ -197,13 +194,13 @@ output
 2  Children screamed in street as we fled 2am Gaz...  N/A
 3  My daughter’s final moments as Hamas invaded h...  N/A
 4  Hiding at home, blinded and choked by dust - l...  N/A
-
 ```
 
 Webscraping is a great tool to use to find data that you don't already have collected. 
 
 # Lastly, let's save our scraped data to a csv file. 
 Data Storage: In a real project, consider storing the scraped data in a structured format like CSV, JSON, or a database for further analysis.  We'll use our code from our webscraping example we did for step 1 repeated and save the Number of Provo Employees table to a csv file.
+
 ```
 import pandas as pd
 # Rename the 'Employee' column to 'Number of Employees'
@@ -214,7 +211,6 @@ df = df[['Employer', 'Number of Employees']]
 print(df)
 # Save the modified DataFrame to a CSV file
 df.to_csv('employee_data.csv', index=False)
-``
 ```
 Conclusion: Beautiful soup is a great library to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  I have provided a cheat sheet for you to use to try out some more of your own web scraping here. {https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt}
 Have a beautiful time using beautiful soup for your webscraping needs. 

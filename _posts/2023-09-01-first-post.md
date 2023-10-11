@@ -3,7 +3,7 @@ layout: post
 title:  "The Beauty of Beautiful Soup 4: A Powerful Tool for Web Scraping and Data Cleaning in Python."
 author: Rebekah Webb
 description: 
-image: /assets/images/blog-image.jpg
+image: /assets/images/imagesoup.png
 ---
 Intro
 This is a simple tutorial to show how to use beautiful soup4 in python to parse HTML data. From their site {https://www.crummy.com/software/BeautifulSoup/} we learn that Beautiful Soup is a Python library for pulling data out of HTML and XML files.

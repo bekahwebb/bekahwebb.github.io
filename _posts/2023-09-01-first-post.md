@@ -11,7 +11,7 @@ This is a simple tutorial to show how to use beautiful soup4 in python to parse 
 Let's start with an example of web scraping from a wikipedia table on production car speed records
 Before we begin this tutorial, open up your favorite python notetbook and begin trying out the code by installing these packages.  We import pandas for our code such as pd.read.  Next we import requests so that we may use the code below for for our page = requests.get(url).  From bs4 we import BeautifulSoup for webscraping.  Our last import will be used for our data cleaning code, re which is the Python module for regular expressions. Regular expressions are used for pattern matching and text manipulation.
   
-  
+ ``` 
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -46,14 +46,12 @@ output
 2  Two-way average speed tested by Automobil Revu...  
 3              Tested by Autosport in December 1961.  
 4  Tested by Autocar in 1966. A total of 412 Iso ...  
-
+```
 we have some cleaning to do to organize our table so that our headings are in a row together and we get rid of extra dots etc.
 
 Here's code to clean our table
 # Step 2: Cleaning data
-
-![Figure]({{site.url}}/{{site.baseurl}}C:\Users\bekah\OneDrive\Documents\Stat 386\bekahwebb.github.io\assets\images\imagestep2.png
-
+```
 df = df.rename(columns={'Number\nbuilt[10]': 'Number built'})
 df = df[['Year', 'Make and model', 'Top speed', 'Number built']]
 df['Top speed'] = df['Top speed'].apply(lambda x: re.findall('\d+\.?\d*', x)[0])
@@ -71,13 +69,13 @@ output
 2  1955  Mercedes-Benz 300SL      242.5         1400
 3  1959  Aston Martin DB4 GT      245.0           75
 4  1963     Iso Grifo GL 365      259.0     over 400
-
+```
 Better much better.  We now have a cleaned table that is much easier to follow.
 
 Now let's scrape data from the provo wikipedia page with this url address and the same code as above but specify the table we want, I wanted table 4 to look at the top Employers in Provo, no shocker that BYU is the #1 employer.  We will repeat steps 1 and 2 for this tutorial to now handle a new table that we want to scrape and clean.
 
 # Repeat Step 1: Scraping data from another wikipedia page
-url = 'https://en.wikipedia.org/wiki/Provo,_Utah'
+```url = 'https://en.wikipedia.org/wiki/Provo,_Utah'
 page = requests.get(url)
 soup = BeautifulSoup(page.content, 'html.parser')
 tables = soup.find_all('table')
@@ -122,7 +120,7 @@ output
 7                      RBD Acquisition         1,000-1,999
 8              Frontier Communications             500-999
 9                Nu Skin International             500-999
-
+```
 I encourage you to use step 1 to find your own pages to scrape, and find the specific table that you want to use, and then do step 2 to clean your data and make the table look how you want.
 
 Now let's try web scraping news headlines from the BBC.
@@ -132,7 +130,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # Step 1: Make an HTTP request to the news website
-import requests
+```import requests
 from bs4 import BeautifulSoup
 
 # Step 1: Make an HTTP request to the news website
@@ -181,10 +179,10 @@ output
 
 5. Hiding at home, blinded and choked by dust - life in Gaza
    URL: N/A
-
+```
 Let's clean up this output a little bit.
 
-import pandas as pd
+```import pandas as pd
 # Convert the list of dictionaries into a DataFrame
 df = pd.DataFrame(headlines)
 # Print the first few rows of the DataFrame
@@ -197,7 +195,7 @@ output
 2  Children screamed in street as we fled 2am Gaz...  N/A
 3  My daughter’s final moments as Hamas invaded h...  N/A
 4  Hiding at home, blinded and choked by dust - l...  N/A
-
+```
 Webscraping is a great tool to use to find data that you don't already have collected, keep in mind that there are some sites that may not be ethical to scrape Respect Website Policies: Before scraping any website, make sure to check the website's 'robots.txt' file to see if web scraping is allowed or prohibited. Some websites might have terms of use that you need to adhere to.
 
 Data Storage: In a real project, consider storing the scraped data in a structured format like CSV, JSON, or a database for further analysis.
@@ -205,15 +203,3 @@ Data Storage: In a real project, consider storing the scraped data in a structur
 Conclusion: Beautiful soup is a great library to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  I have provided a cheat sheet for you to use to try out some more of your own web scraping here. {https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt}
 Have a beautiful time using beautiful soup for your webscraping needs, happy scraping!
 
-import pandas as pd
-import requests
-from bs4 import BeautifulSoup
-import re
-
-# Step 1: Scraping data
-url = 'https://en.wikipedia.org/wiki/Production_car_speed_record'
-page = requests.get(url)
-soup = BeautifulSoup(page.content, 'html.parser')
-table = soup.find('table', class_='wikitable')
-df = pd.read_html(str(table))[0]
-print(df.head())

@@ -129,39 +129,26 @@ Now let's try web scraping news headlines from the BBC.
 Here's my code:
 import requests
 from bs4 import BeautifulSoup
-
 # Step 1: Make an HTTP request to the news website
-```import requests
-from bs4 import BeautifulSoup
-
-# Step 1: Make an HTTP request to the news website
-#url = 'https://www.bbc.com/news'
-#response = requests.get(url)
-
+url = 'https://www.bbc.com/news'
+response = requests.get(url)
 # Check if the request was successful
 if response.status_code == 200:
     # Step 2: Parse the HTML content with Beautiful Soup
     soup = BeautifulSoup(response.content, 'html.parser')
-     Step 3: Find and extract the top headlines
+    # Step 3: Find and extract the top headlines
     headlines = []
     headline_elements = soup.find_all('h3', class_='gs-c-promo-heading__title')
     for element in headline_elements:
         headline_text = element.text.strip()
-        # Check if an anchor tag exists
-        anchor_tag = element.find('a')
-        if anchor_tag:
-            headline_link = anchor_tag['href']
-            headlines.append({'text': headline_text, 'link': headline_link})
-        else:
-            # Handle the case where no link is found
-            headlines.append({'text': headline_text, 'link': 'N/A'})
-        # Step 4: Display the scraped headlines
+        headline_link = element.find('a')['href']
+        headlines.append({'text': headline_text, 'link': headline_link})
+    # Step 4: Display the scraped headlines
     for i, headline in enumerate(headlines, start=1):
         print(f"{i}. {headline['text']}")
         print(f"   URL: {headline['link']}\n")
 else:
     print("Failed to retrieve the web page. Status code:", response.status_code)
-
 
 output
 1. Gaza's only power plant runs out of fuel during Israeli siege
@@ -179,6 +166,7 @@ output
 5. Hiding at home, blinded and choked by dust - life in Gaza
    URL: N/A
 ```
+
 Let's clean up this output a little bit.
 
 ```import pandas as pd
@@ -186,7 +174,6 @@ Let's clean up this output a little bit.
 df = pd.DataFrame(headlines)
 # Print the first few rows of the DataFrame
 print(df.head())
-
 output
                                                 text link
 0  Gaza's only power plant runs out of fuel durin...  N/A

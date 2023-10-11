@@ -181,7 +181,7 @@ output
    URL: N/A
 ```
 Let's clean up this output a little bit.
-
+```
 ```import pandas as pd
 # Convert the list of dictionaries into a DataFrame
 df = pd.DataFrame(headlines)
@@ -189,13 +189,15 @@ df = pd.DataFrame(headlines)
 print(df.head())
 
 output
-                                               text link
+                                                text link
 0  Gaza's only power plant runs out of fuel durin...  N/A
 1  Inside Israeli border village where Hamas kill...  N/A
 2  Children screamed in street as we fled 2am Gaz...  N/A
 3  My daughter’s final moments as Hamas invaded h...  N/A
 4  Hiding at home, blinded and choked by dust - l...  N/A
+
 ```
+
 Webscraping is a great tool to use to find data that you don't already have collected, keep in mind that there are some sites that may not be ethical to scrape Respect Website Policies: Before scraping any website, make sure to check the website's 'robots.txt' file to see if web scraping is allowed or prohibited. Some websites might have terms of use that you need to adhere to.
 
 Data Storage: In a real project, consider storing the scraped data in a structured format like CSV, JSON, or a database for further analysis.

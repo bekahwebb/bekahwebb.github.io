@@ -72,10 +72,11 @@ output
 ```
 Better much better.  We now have a cleaned table that is much easier to follow.
 
-Now let's scrape data from the provo wikipedia page with this url address and the same code as above but specify the table we want, I wanted table 4 to look at the top Employers in Provo, no shocker that BYU is the #1 employer.  We will repeat steps 1 and 2 for this tutorial to now handle a new table that we want to scrape and clean.
+Now let's scrape data from the Provo Wikipedia page with this url address and the same code as above but specify the table we want. I want to look at table 4 to look at the top Employers in Provo.  It is no shocker that BYU is the #1 Employer.  We will repeat steps 1 and 2 for this tutorial to now handle a new table that we want to scrape and clean.
 
 # Repeat Step 1: Scraping data from another wikipedia page
-```url = 'https://en.wikipedia.org/wiki/Provo,_Utah'
+```
+url = 'https://en.wikipedia.org/wiki/Provo,_Utah'
 page = requests.get(url)
 soup = BeautifulSoup(page.content, 'html.parser')
 tables = soup.find_all('table')
@@ -95,14 +96,16 @@ output
 7   8                      RBD Acquisition    1,000-1,999
 8   9              Frontier Communications        500-999
 9  10                Nu Skin International        500-999
-
+```
 
 This table is already pretty readable, we will just get rid of the numbered column and rename the # of Employees column.
 
 # Repeat Step 2: Cleaning data
+
 I did a little cleaning to get rid of the # column and renamed the Number of employees column
+
 # Rename the 'Employee' column 
-df = df.rename(columns={'# of Employees': 'Number of Employees'})
+```df = df.rename(columns={'# of Employees': 'Number of Employees'})
 # Select specific columns
 df = df[['Employer', 'Number of Employees']]
 # Print the cleaned DataFrame
@@ -126,7 +129,7 @@ I encourage you to use step 1 to find your own pages to scrape, and find the spe
 Now let's try web scraping news headlines from the BBC.
 
 Here's my code:
-import requests
+```import requests
 from bs4 import BeautifulSoup
 
 # Step 1: Make an HTTP request to the news website
@@ -198,10 +201,22 @@ output
 
 ```
 
-Webscraping is a great tool to use to find data that you don't already have collected, keep in mind that there are some sites that may not be ethical to scrape Respect Website Policies: Before scraping any website, make sure to check the website's 'robots.txt' file to see if web scraping is allowed or prohibited. Some websites might have terms of use that you need to adhere to.
+Webscraping is a great tool to use to find data that you don't already have collected. Keep in mind that there are some sites that may not be ethical to scrape. Respect Website Policies: Before scraping any website, make sure to check the website's 'robots.txt' file to see if web scraping is allowed or prohibited. Some websites might have terms of use that you need to adhere to.
 
-Data Storage: In a real project, consider storing the scraped data in a structured format like CSV, JSON, or a database for further analysis.
-
+# Lastly, let's save our scraped data to a csv file. 
+Data Storage: In a real project, consider storing the scraped data in a structured format like CSV, JSON, or a database for further analysis.  We'll use our code from our webscraping step 1 repeated excercise and save the Number of Provo Employees table to a csv file.
+```
+import pandas as pd
+# Rename the 'Employee' column to 'Number of Employees'
+df = df.rename(columns={'# of Employees': 'Number of Employees'})
+# Select specific columns
+df = df[['Employer', 'Number of Employees']]
+# Print the cleaned DataFrame
+print(df)
+# Save the modified DataFrame to a CSV file
+df.to_csv('employee_data.csv', index=False)
+``
+```
 Conclusion: Beautiful soup is a great library to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  I have provided a cheat sheet for you to use to try out some more of your own web scraping here. {https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt}
-Have a beautiful time using beautiful soup for your webscraping needs, happy scraping!
+Have a beautiful time using beautiful soup for your webscraping needs. Happy scraping!
 

@@ -51,7 +51,7 @@ we have some cleaning to do to organize our table so that our headings are in a 
 
 Here's code to clean our table
 # Step 2: Cleaning data
-![Figure]({{site.url}}/{{site.baseurl}}/assets/images/imagestep2.png)
+![Figure]({{site.url}}/{{site.baseurl}}C:\Users\bekah\OneDrive\Documents\Stat 386\bekahwebb.github.io\assets\images\imagestep2.png
 df = df.rename(columns={'Number\nbuilt[10]': 'Number built'})
 df = df[['Year', 'Make and model', 'Top speed', 'Number built']]
 df['Top speed'] = df['Top speed'].apply(lambda x: re.findall('\d+\.?\d*', x)[0])

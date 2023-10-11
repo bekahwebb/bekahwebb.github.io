@@ -24,6 +24,8 @@ soup = BeautifulSoup(page.content, 'html.parser')
 table = soup.find('table', class_='wikitable')
 df = pd.read_html(str(table))[0]
 print(df.head())
+
+output
   Year       Make and model                  Top speed  \
 0  1894            Benz Velo        20 km/h (12 mph)[3]   
 1  1949         Jaguar XK120  200.5 km/h (124.6 mph)[4]   
@@ -54,6 +56,8 @@ df = df[['Year', 'Make and model', 'Top speed', 'Number built']]
 df['Top speed'] = df['Top speed'].apply(lambda x: re.findall('\d+\.?\d*', x)[0])
 df['Top speed'] = df['Top speed'].astype(float)
 print(df.head())
+
+output
  Year       Make and model  Top speed Number built
 0  1894            Benz Velo       20.0         1200
 1  1949         Jaguar XK120      200.5        12000
@@ -61,10 +65,11 @@ print(df.head())
 3  1959  Aston Martin DB4 GT      245.0           75
 4  1963     Iso Grifo GL 365      259.0     over 400
 
-Better much better
+Better much better.  We now have a cleaned table that is much easier to follow.
 
-Now let's scrape data from the provo wikipedia page with this url address and the same code as above but specify the table we want, I wanted table 4 to look at the top Employers in Provo, no shocker that BYU is the #1 employer.
-# Step 1: Scraping data
+Now let's scrape data from the provo wikipedia page with this url address and the same code as above but specify the table we want, I wanted table 4 to look at the top Employers in Provo, no shocker that BYU is the #1 employer.  We will repeat steps 1 and 2 for this tutorial to now handle a new table that we want to scrape and clean.
+
+# Repeat Step 1: Scraping data from another wikipedia page
 url = 'https://en.wikipedia.org/wiki/Provo,_Utah'
 page = requests.get(url)
 soup = BeautifulSoup(page.content, 'html.parser')
@@ -72,6 +77,8 @@ tables = soup.find_all('table')
 table = tables[4]  # Select the second table (0-based index)
 df = pd.read_html(str(table))[0]
 print(df)
+
+output
     #                             Employer # of Employees
 0   1             Brigham Young University    5,000-6,999
 1   2  Utah Valley Regional Medical Center    3,000-3,999
@@ -84,7 +91,11 @@ print(df)
 8   9              Frontier Communications        500-999
 9  10                Nu Skin International        500-999
 
-I did a little cleaning to get rid of the number row and rename the number of employees column
+
+This table is already pretty readable, we will just get rid of the numbered column and rename the # of Employees column.
+
+# Repeat Step 2: Cleaning data
+I did a little cleaning to get rid of the # column and renamed the Number of employees column
 # Rename the 'Employee' column 
 df = df.rename(columns={'# of Employees': 'Number of Employees'})
 # Select specific columns
@@ -92,6 +103,7 @@ df = df[['Employer', 'Number of Employees']]
 # Print the cleaned DataFrame
 print(df)
 
+output
                              Employer Number of Employees
 0             Brigham Young University         5,000-6,999
 1  Utah Valley Regional Medical Center         3,000-3,999
@@ -106,5 +118,80 @@ print(df)
 
 I encourage you to use step 1 to find your own pages to scrape, and find the specific table that you want to use, and then do step 2 to clean your data and make the table look how you want.
 
-Conclusion: Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  Beautiful soup is a great tool to use in python to web scrape an html.
+Now let's try web scraping news headlines from the BBC.
+
+Here's my code:
+import requests
+from bs4 import BeautifulSoup
+
+# Step 1: Make an HTTP request to the news website
+url = 'https://www.bbc.com/news'
+response = requests.get(url)
+
+# Check if the request was successful
+if response.status_code == 200:
+    # Step 2: Parse the HTML content with Beautiful Soup
+    soup = BeautifulSoup(response.content, 'html.parser')
+
+    # Step 3: Find and extract the top headlines
+    headlines = []
+    headline_elements = soup.find_all('h3', class_='gs-c-promo-heading__title')
+    for element in headline_elements:
+        headline_text = element.text.strip()
+        # Check if an anchor tag exists
+        anchor_tag = element.find('a')
+        if anchor_tag:
+            headline_link = anchor_tag['href']
+            headlines.append({'text': headline_text, 'link': headline_link})
+        else:
+            # Handle the case where no link is found
+            headlines.append({'text': headline_text, 'link': 'N/A'})
+
+    # Step 4: Display the scraped headlines
+    for i, headline in enumerate(headlines, start=1):
+        print(f"{i}. {headline['text']}")
+        print(f"   URL: {headline['link']}\n")
+
+else:
+    print("Failed to retrieve the web page. Status code:", response.status_code)
+
+
+output
+1. Gaza's only power plant runs out of fuel during Israeli siege
+   URL: N/A
+
+2. Inside Israeli border village where Hamas killed families in their homes
+   URL: N/A
+
+3. Children screamed in street as we fled 2am Gaza air strike
+   URL: N/A
+
+4. My daughter’s final moments as Hamas invaded her home
+   URL: N/A
+
+5. Hiding at home, blinded and choked by dust - life in Gaza
+   URL: N/A
+
+Let's clean up this output a little bit.
+
+import pandas as pd
+# Convert the list of dictionaries into a DataFrame
+df = pd.DataFrame(headlines)
+# Print the first few rows of the DataFrame
+print(df.head())
+
+output
+                                               text link
+0  Gaza's only power plant runs out of fuel durin...  N/A
+1  Inside Israeli border village where Hamas kill...  N/A
+2  Children screamed in street as we fled 2am Gaz...  N/A
+3  My daughter’s final moments as Hamas invaded h...  N/A
+4  Hiding at home, blinded and choked by dust - l...  N/A
+
+Webscraping is a great tool to use to find data that you don't already have collected, keep in mind that there are some sites that may not be ethical to scrape Respect Website Policies: Before scraping any website, make sure to check the website's 'robots.txt' file to see if web scraping is allowed or prohibited. Some websites might have terms of use that you need to adhere to.
+
+Data Storage: In a real project, consider storing the scraped data in a structured format like CSV, JSON, or a database for further analysis.
+
+Conclusion: Beautiful soup is a great libary to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  I have provided a cheat sheet for you to use to try out some more of your own web scraping here. {https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt}
+Have a beautiful time using beautiful soup for your webscraping needs, happy scraping!
 

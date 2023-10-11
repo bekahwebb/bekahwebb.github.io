@@ -52,6 +52,7 @@ we have some cleaning to do to organize our table so that our headings are in a 
 Here's code to clean our table
 # Step 2: Cleaning data
 ![Figure]({{site.url}}/{{site.baseurl}}C:\Users\bekah\OneDrive\Documents\Stat 386\bekahwebb.github.io\assets\images\imagestep2.png
+
 df = df.rename(columns={'Number\nbuilt[10]': 'Number built'})
 df = df[['Year', 'Make and model', 'Top speed', 'Number built']]
 df['Top speed'] = df['Top speed'].apply(lambda x: re.findall('\d+\.?\d*', x)[0])
@@ -126,15 +127,18 @@ import requests
 from bs4 import BeautifulSoup
 
 # Step 1: Make an HTTP request to the news website
-url = 'https://www.bbc.com/news'
-response = requests.get(url)
+import requests
+from bs4 import BeautifulSoup
+
+# Step 1: Make an HTTP request to the news website
+#url = 'https://www.bbc.com/news'
+#response = requests.get(url)
 
 # Check if the request was successful
 if response.status_code == 200:
     # Step 2: Parse the HTML content with Beautiful Soup
     soup = BeautifulSoup(response.content, 'html.parser')
-
-    # Step 3: Find and extract the top headlines
+     Step 3: Find and extract the top headlines
     headlines = []
     headline_elements = soup.find_all('h3', class_='gs-c-promo-heading__title')
     for element in headline_elements:
@@ -195,4 +199,36 @@ Data Storage: In a real project, consider storing the scraped data in a structur
 
 Conclusion: Beautiful soup is a great libary to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  I have provided a cheat sheet for you to use to try out some more of your own web scraping here. {https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt}
 Have a beautiful time using beautiful soup for your webscraping needs, happy scraping!
+
+# Seperating out the training and response variables
+X = ratings.drop(columns=['Rating'])  # Training variable
+y = ratings['Rating']  # Target variable
+
+# Splitting the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Setting up XGBoost hyperparameter tuning with GridSearchCV
+xgboost_model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=1000)
+param_grid = {
+    'min_child_weight': [1, 5, 10],
+    'max_depth': [3, 4, 5],
+    'learning_rate': [0.01, 0.1, 0.2],
+    'gamma': [0, 0.1, 0.2],
+    'subsample': [0.7, 0.8, 0.9],
+    'colsample_bytree': [0.7, 0.8, 0.9]
+}
+grid_search = GridSearchCV(estimator=xgboost_model, param_grid=param_grid,
+                           scoring='neg_mean_squared_error', cv=5)
+
+# Fitting The Model (this may take a while to run)
+grid_search.fit(X_train, y_train)
+
+# Getting the best hyperparameters
+best_params = grid_search.best_params_
+
+# Training the final model with the best hyperparameters
+xgboost_model_final = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=1000, **best_params)
+xgboost_model_final.fit(X_train, y_train)
+Step 4 - Getting Results
+We can now take our model and run it on our testing set of movies to get recommendations.
 

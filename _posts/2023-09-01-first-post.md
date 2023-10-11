@@ -1,8 +1,110 @@
 ---
 layout: post
-title:  "Post Name"
-author: Your name
-description: Short yet informative description
+title:  "The Beauty of Beautiful Soup 4: A Powerful Tool for Web Scraping and Data Cleaning in Python."
+author: Rebekah Webb
+description: 
 image: /assets/images/blog-image.jpg
 ---
-"Hello World!"
+Intro
+This is a simple tutorial to show how to use beautiful soup4 in python to parse HTML data. From their site {https://www.crummy.com/software/BeautifulSoup/} we learn that Beautiful Soup is a Python library for pulling data out of HTML and XML files.
+
+Let's start with an example of web scraping from a wikipedia table on production car speed records
+Before we begin this tutorial, open up your favorite python notetbook and begin trying out the code by installing these packages.  We import pandas for our code such as pd.read.  Next we import requests so that we may use the code below for for our page = requests.get(url).  From bs4 we import BeautifulSoup for webscraping.  Our last import will be used for our data cleaning code, re which is the Python module for regular expressions. Regular expressions are used for pattern matching and text manipulation.
+  
+  
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+import re
+
+# Step 1: Scraping data
+url = 'https://en.wikipedia.org/wiki/Production_car_speed_record'
+page = requests.get(url)
+soup = BeautifulSoup(page.content, 'html.parser')
+table = soup.find('table', class_='wikitable')
+df = pd.read_html(str(table))[0]
+print(df.head())
+  Year       Make and model                  Top speed  \
+0  1894            Benz Velo        20 km/h (12 mph)[3]   
+1  1949         Jaguar XK120  200.5 km/h (124.6 mph)[4]   
+2  1955  Mercedes-Benz 300SL  242.5 km/h (150.7 mph)[6]   
+3  1959  Aston Martin DB4 GT      245 km/h (152 mph)[7]   
+4  1963     Iso Grifo GL 365      259 km/h (161 mph)[8]   
+
+                                              Engine Number built  \
+0  1,045 cm3 (63.8 cu in) single-cylinder 1.1 kW ...         1200   
+1  3,442 cm3 (210.0 cu in) inline-6 119 kW (162 P...        12000   
+2  2,996 cm3 (182.8 cu in) inline-6 158 kW (215 P...         1400   
+3  3,670 cm3 (224 cu in) inline-6 225 kW (306 PS;...           75   
+4  5,354 cm3 (326.7 cu in) V8 268 kW (365 PS; 360...     over 400   
+
+                                             Comment  
+0                               First production car  
+1  Some publications cite the XK120's timed top s...  
+2  Two-way average speed tested by Automobil Revu...  
+3              Tested by Autosport in December 1961.  
+4  Tested by Autocar in 1966. A total of 412 Iso ...  
+
+we have some cleaning to do to organize our table so that our headings are in a row together and we get rid of extra dots etc.
+
+Here's code to clean our table
+# Step 2: Cleaning data
+df = df.rename(columns={'Number\nbuilt[10]': 'Number built'})
+df = df[['Year', 'Make and model', 'Top speed', 'Number built']]
+df['Top speed'] = df['Top speed'].apply(lambda x: re.findall('\d+\.?\d*', x)[0])
+df['Top speed'] = df['Top speed'].astype(float)
+print(df.head())
+ Year       Make and model  Top speed Number built
+0  1894            Benz Velo       20.0         1200
+1  1949         Jaguar XK120      200.5        12000
+2  1955  Mercedes-Benz 300SL      242.5         1400
+3  1959  Aston Martin DB4 GT      245.0           75
+4  1963     Iso Grifo GL 365      259.0     over 400
+
+Better much better
+
+Now let's scrape data from the provo wikipedia page with this url address and the same code as above but specify the table we want, I wanted table 4 to look at the top Employers in Provo, no shocker that BYU is the #1 employer.
+# Step 1: Scraping data
+url = 'https://en.wikipedia.org/wiki/Provo,_Utah'
+page = requests.get(url)
+soup = BeautifulSoup(page.content, 'html.parser')
+tables = soup.find_all('table')
+table = tables[4]  # Select the second table (0-based index)
+df = pd.read_html(str(table))[0]
+print(df)
+    #                             Employer # of Employees
+0   1             Brigham Young University    5,000-6,999
+1   2  Utah Valley Regional Medical Center    3,000-3,999
+2   3                               Vivint    3,000-3,999
+3   4                         Arm Security    1,000-1,999
+4   5                        Revere Health    1,000-1,999
+5   6                       Chrysalis Utah    1,000-1,999
+6   7                            Qualtrics    1,000-1,999
+7   8                      RBD Acquisition    1,000-1,999
+8   9              Frontier Communications        500-999
+9  10                Nu Skin International        500-999
+
+I did a little cleaning to get rid of the number row and rename the number of employees column
+# Rename the 'Employee' column 
+df = df.rename(columns={'# of Employees': 'Number of Employees'})
+# Select specific columns
+df = df[['Employer', 'Number of Employees']]
+# Print the cleaned DataFrame
+print(df)
+
+                             Employer Number of Employees
+0             Brigham Young University         5,000-6,999
+1  Utah Valley Regional Medical Center         3,000-3,999
+2                               Vivint         3,000-3,999
+3                         Arm Security         1,000-1,999
+4                        Revere Health         1,000-1,999
+5                       Chrysalis Utah         1,000-1,999
+6                            Qualtrics         1,000-1,999
+7                      RBD Acquisition         1,000-1,999
+8              Frontier Communications             500-999
+9                Nu Skin International             500-999
+
+I encourage you to use step 1 to find your own pages to scrape, and find the specific table that you want to use, and then do step 2 to clean your data and make the table look how you want.
+
+Conclusion: Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  Beautiful soup is a great tool to use in python to web scrape an html.
+

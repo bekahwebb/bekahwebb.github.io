@@ -51,7 +51,6 @@ we have some cleaning to do to organize our table so that our headings are in a 
 
 Here's code to clean our table
 # Step 2: Cleaning data
-![Figure](https://www.bekahwebb.github.io/assets/images/imagestep2.png)
 
 ![Figure]({{site.url}}/{{site.baseurl}}C:\Users\bekah\OneDrive\Documents\Stat 386\bekahwebb.github.io\assets\images\imagestep2.png
 
@@ -61,8 +60,12 @@ df['Top speed'] = df['Top speed'].apply(lambda x: re.findall('\d+\.?\d*', x)[0])
 df['Top speed'] = df['Top speed'].astype(float)
 print(df.head())
 
+
+
+
+
 output
- Year       Make and model  Top speed Number built
+    Year       Make and model  Top speed Number built
 0  1894            Benz Velo       20.0         1200
 1  1949         Jaguar XK120      200.5        12000
 2  1955  Mercedes-Benz 300SL      242.5         1400

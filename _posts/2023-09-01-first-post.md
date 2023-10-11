@@ -199,38 +199,18 @@ Webscraping is a great tool to use to find data that you don't already have coll
 
 Data Storage: In a real project, consider storing the scraped data in a structured format like CSV, JSON, or a database for further analysis.
 
-Conclusion: Beautiful soup is a great libary to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  I have provided a cheat sheet for you to use to try out some more of your own web scraping here. {https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt}
+Conclusion: Beautiful soup is a great library to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  I have provided a cheat sheet for you to use to try out some more of your own web scraping here. {https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt}
 Have a beautiful time using beautiful soup for your webscraping needs, happy scraping!
 
-# Seperating out the training and response variables
-X = ratings.drop(columns=['Rating'])  # Training variable
-y = ratings['Rating']  # Target variable
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+import re
 
-# Splitting the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Setting up XGBoost hyperparameter tuning with GridSearchCV
-xgboost_model = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=1000)
-param_grid = {
-    'min_child_weight': [1, 5, 10],
-    'max_depth': [3, 4, 5],
-    'learning_rate': [0.01, 0.1, 0.2],
-    'gamma': [0, 0.1, 0.2],
-    'subsample': [0.7, 0.8, 0.9],
-    'colsample_bytree': [0.7, 0.8, 0.9]
-}
-grid_search = GridSearchCV(estimator=xgboost_model, param_grid=param_grid,
-                           scoring='neg_mean_squared_error', cv=5)
-
-# Fitting The Model (this may take a while to run)
-grid_search.fit(X_train, y_train)
-
-# Getting the best hyperparameters
-best_params = grid_search.best_params_
-
-# Training the final model with the best hyperparameters
-xgboost_model_final = xgb.XGBRegressor(objective='reg:squarederror', n_estimators=1000, **best_params)
-xgboost_model_final.fit(X_train, y_train)
-Step 4 - Getting Results
-We can now take our model and run it on our testing set of movies to get recommendations.
-
+# Step 1: Scraping data
+url = 'https://en.wikipedia.org/wiki/Production_car_speed_record'
+page = requests.get(url)
+soup = BeautifulSoup(page.content, 'html.parser')
+table = soup.find('table', class_='wikitable')
+df = pd.read_html(str(table))[0]
+print(df.head())

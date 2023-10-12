@@ -7,7 +7,7 @@ image: /assets/images/imagesoups1.png
 ---
 # Introduction:
 
-This is a simple tutorial to show how to use beautiful soup4 in python to parse HTML data. From their site ![here]{https://www.crummy.com/software/BeautifulSoup/} we learn that Beautiful Soup is a Python library for pulling data out of HTML and XML files. Keep in mind that there are some sites that may not be ethical to scrape. Respect Website Policies: Before scraping any website, make sure to check the website's 'robots.txt' file to see if web scraping is allowed or prohibited. Some websites might have terms of use that you need to adhere to.  For this tutorial, I checked the robots.txt for the sites that I scraped data, Wikipedia and the BBC fit the criteria for approved web scraping.
+This is a simple tutorial to show how to use beautiful soup4 in python to parse HTML data. From their site [here](https://www.crummy.com/software/BeautifulSoup/) we learn that Beautiful Soup is a Python library for pulling data out of HTML and XML files. Keep in mind that there are some sites that may not be ethical to scrape. Respect Website Policies: Before scraping any website, make sure to check the website's 'robots.txt' file to see if web scraping is allowed or prohibited. Some websites might have terms of use that you need to adhere to.  For this tutorial, I checked the robots.txt for the sites that I scraped data, Wikipedia and the BBC fit the criteria for approved web scraping.
 
 Let's start with an example of web scraping from a wikipedia table on production car speed records.
 Before we begin this tutorial, open up your favorite python notetbook and begin trying out the code by installing these packages.  I imported pandas for my python code for example, pd.read.  Next we import requests so that we may use the code below for for our page = requests.get(url).  From bs4 we import BeautifulSoup for webscraping.  Our last import will be used for our data cleaning code, re which is the Python module for regular expressions. Regular expressions are used for pattern matching and text manipulation. 
@@ -206,11 +206,10 @@ print(df)
 df.to_csv('employee_data.csv', index=False)
 
 ```
-Here is the Employee data csv. file we saved our data to ![employee_data.csv](C:\Users\bekah\OneDrive\Documents\Stat 386\bekahwebb.github.io\employee_data.csv)
 
 # Conclusion:
 
- Beautiful soup is a great library to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  I have provided a cheat sheet for you to use to try out some more of your own web scraping here. ![Beutifulsoupcheetsheet.ipynb]{https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt}
+ Beautiful soup is a great library to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  I have provided a cheat sheet for you to use to try out some more of your own web scraping [here](https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt)
 Have a beautiful time using beautiful soup for your webscraping needs. Enjoy the soup!
-[imagesoup1.png]({{site.url}}/{{site.baseurl}}/assets/images/C:\Users\bekah\OneDrive\Documents\Stat 386\bekahwebb.github.io\assets\images\imagesoups1.png)
+![imagesoup1.png]({{site.url}}/{{site.baseurl}}/assets/images/imagesoups1.png)
 

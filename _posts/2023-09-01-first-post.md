@@ -126,7 +126,7 @@ I encourage you to use step 1 to find your own pages to scrape, and find the spe
 Now let's try web scraping news headlines from the BBC.
 
 ```
-Here's my code:
+#Here's my code:
 import requests
 from bs4 import BeautifulSoup
 # Step 1: Make an HTTP request to the news website
@@ -134,16 +134,16 @@ url = 'https://www.bbc.com/news'
 response = requests.get(url)
 # Check if the request was successful
 if response.status_code == 200:
-    # Step 2: Parse the HTML content with Beautiful Soup
-    soup = BeautifulSoup(response.content, 'html.parser')
-    # Step 3: Find and extract the top headlines
-    headlines = []
-    headline_elements = soup.find_all('h3', class_='gs-c-promo-heading__title')
-    for element in headline_elements:
-        headline_text = element.text.strip()
-        headline_link = element.find('a')['href']
-        headlines.append({'text': headline_text, 'link': headline_link})
-    # Step 4: Display the scraped headlines
+# Step 2: Parse the HTML content with Beautiful Soup
+soup = BeautifulSoup(response.content, 'html.parser')
+# Step 3: Find and extract the top headlines
+headlines = []
+headline_elements = soup.find_all('h3', class_='gs-c-promo-heading__title')
+for element in headline_elements:
+headline_text = element.text.strip()
+headline_link = element.find('a')['href']
+headlines.append({'text': headline_text, 'link': headline_link})
+# Step 4: Display the scraped headlines
     for i, headline in enumerate(headlines, start=1):
         print(f"{i}. {headline['text']}")
         print(f"   URL: {headline['link']}\n")
@@ -165,11 +165,12 @@ output
 
 5. Hiding at home, blinded and choked by dust - life in Gaza
    URL: N/A
+
 ```
 
 Let's clean up this output a little bit.
 
-```import pandas as pd
+```
 # Convert the list of dictionaries into a DataFrame
 df = pd.DataFrame(headlines)
 # Print the first few rows of the DataFrame
@@ -180,7 +181,9 @@ output
 1  Inside Israeli border village where Hamas kill...  N/A
 2  Children screamed in street as we fled 2am Gaz...  N/A
 3  My daughter’s final moments as Hamas invaded h...  N/A
-4  Hiding at home, blinded and choked by dust - l...  N/A
+4  Hiding at home, blinded and choked by dust - 
+l...  N/A
+
 ```
 
 Webscraping is a great tool to use to find data that you don't already have collected. 
@@ -198,7 +201,9 @@ df = df[['Employer', 'Number of Employees']]
 print(df)
 # Save the modified DataFrame to a CSV file
 df.to_csv('employee_data.csv', index=False)
+
 ```
 Conclusion: Beautiful soup is a great library to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  I have provided a cheat sheet for you to use to try out some more of your own web scraping here. {https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt}
-Have a beautiful time using beautiful soup for your webscraping needs. 
+Have a beautiful time using beautiful soup for your webscraping needs. Enjoy the soup!
 
+![imagesoups1.png](<../assets/images/Screenshot 2023-10-11 225746.png>))

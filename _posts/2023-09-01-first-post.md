@@ -3,9 +3,9 @@ layout: post
 title:  "The Beauty of Beautiful Soup 4: A Powerful Tool for Web Scraping and Data Cleaning in Python."
 author: Rebekah Webb
 description: This is a Comprehensive Beautiful Soup Tutorial.
-image: /assets/images/imagesoup1.png
+image: /assets/images/imagesoups1.png
 ---
-# Intro:
+# Introduction:
 
 This is a simple tutorial to show how to use beautiful soup4 in python to parse HTML data. From their site ![here]{https://www.crummy.com/software/BeautifulSoup/} we learn that Beautiful Soup is a Python library for pulling data out of HTML and XML files. Keep in mind that there are some sites that may not be ethical to scrape. Respect Website Policies: Before scraping any website, make sure to check the website's 'robots.txt' file to see if web scraping is allowed or prohibited. Some websites might have terms of use that you need to adhere to.  For this tutorial, I checked the robots.txt for the sites that I scraped data, Wikipedia and the BBC fit the criteria for approved web scraping.
 

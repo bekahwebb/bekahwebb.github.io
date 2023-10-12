@@ -10,7 +10,9 @@ This is a simple tutorial to show how to use beautiful soup4 in python to parse 
 
 Let's start with an example of web scraping from a wikipedia table on production car speed records
 Before we begin this tutorial, open up your favorite python notetbook and begin trying out the code by installing these packages.  We import pandas for our code such as pd.read.  Next we import requests so that we may use the code below for for our page = requests.get(url).  From bs4 we import BeautifulSoup for webscraping.  Our last import will be used for our data cleaning code, re which is the Python module for regular expressions. Regular expressions are used for pattern matching and text manipulation.
+
  # Step 1: Scraping data 
+
  ``` 
 import pandas as pd
 import requests
@@ -68,7 +70,7 @@ output
 ```
 Better, much better.  We now have a cleaned table that is much easier to follow.
 
-Now let's scrape data from the Provo Wikipedia page and use the same code as above with this Provo wiki url but specify the table we want. I want to look at table 4 to look at the top Employers in Provo.  It is no shocker that BYU is the #1 Employer with all of the people that they employ.  We will repeat steps 1 and 2 for this tutorial to now handle a new table that we want to scrape and clean.
+Now let's scrape data from the Provo Wikipedia page and use the same code as above with this Provo wiki url but specify the table we want. I want to look at table 4 to look at the top Employers in Provo.  We will repeat steps 1 and 2 for this tutorial to now handle a new table that we want to scrape and clean.
 
 # Repeat Step 1: Scraping data from another wikipedia page
 ```
@@ -94,7 +96,7 @@ output
 9  10                Nu Skin International        500-999
 ```
 
-This table is already pretty readable, we will just get rid of the numbered column and rename the # of Employees column.
+This table is already pretty readable, it is no surprise that BYU is the #1 Employer with all of the people that they employ.   To make the table a little cleaner, we will just get rid of the numbered column and rename the # of Employees column.
 
 # Repeat Step 2: Cleaning data
 
@@ -206,4 +208,3 @@ df.to_csv('employee_data.csv', index=False)
 Conclusion: Beautiful soup is a great library to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  I have provided a cheat sheet for you to use to try out some more of your own web scraping here. {https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt}
 Have a beautiful time using beautiful soup for your webscraping needs. Enjoy the soup!
 
-![imagesoups1.png](<../assets/images/Screenshot 2023-10-11 225746.png>))

@@ -3,17 +3,18 @@ layout: post
 title:  "The Beauty of Beautiful Soup 4: A Powerful Tool for Web Scraping and Data Cleaning in Python."
 author: Rebekah Webb
 description: This is a Comprehensive Beautiful Soup Tutorial.
-image: /assets/images/imagesoup.png
+image: /assets/images/imagesoup1.png
 ---
-Intro
-This is a simple tutorial to show how to use beautiful soup4 in python to parse HTML data. From their site {https://www.crummy.com/software/BeautifulSoup/} we learn that Beautiful Soup is a Python library for pulling data out of HTML and XML files. Keep in mind that there are some sites that may not be ethical to scrape. Respect Website Policies: Before scraping any website, make sure to check the website's 'robots.txt' file to see if web scraping is allowed or prohibited. Some websites might have terms of use that you need to adhere to.  For this tutorial, we did check the robots.txt for our scraped data and wikipedia and the bbc were ok with the data we scraped.
+# Intro:
 
-Let's start with an example of web scraping from a wikipedia table on production car speed records
-Before we begin this tutorial, open up your favorite python notetbook and begin trying out the code by installing these packages.  We import pandas for our code such as pd.read.  Next we import requests so that we may use the code below for for our page = requests.get(url).  From bs4 we import BeautifulSoup for webscraping.  Our last import will be used for our data cleaning code, re which is the Python module for regular expressions. Regular expressions are used for pattern matching and text manipulation.
+This is a simple tutorial to show how to use beautiful soup4 in python to parse HTML data. From their site ![here]{https://www.crummy.com/software/BeautifulSoup/} we learn that Beautiful Soup is a Python library for pulling data out of HTML and XML files. Keep in mind that there are some sites that may not be ethical to scrape. Respect Website Policies: Before scraping any website, make sure to check the website's 'robots.txt' file to see if web scraping is allowed or prohibited. Some websites might have terms of use that you need to adhere to.  For this tutorial, I checked the robots.txt for the sites that I scraped data, Wikipedia and the BBC fit the criteria for approved web scraping.
 
- # Step 1: Scraping data
+Let's start with an example of web scraping from a wikipedia table on production car speed records.
+Before we begin this tutorial, open up your favorite python notetbook and begin trying out the code by installing these packages.  I imported pandas for my python code for example, pd.read.  Next we import requests so that we may use the code below for for our page = requests.get(url).  From bs4 we import BeautifulSoup for webscraping.  Our last import will be used for our data cleaning code, re which is the Python module for regular expressions. Regular expressions are used for pattern matching and text manipulation. 
 
- ``` 
+# Step 1: Scraping Data
+
+``` 
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -49,7 +50,7 @@ output
 3              Tested by Autosport in December 1961.  
 4  Tested by Autocar in 1966. A total of 412 Iso ...  
 ```
-we have some cleaning to do to organize our table so that our headings are in a row together and we get rid of extra dots etc.
+We have some cleaning to do to organize our table so that our headings are in a row together and we get rid of extra dots etc.
 
 Here's code to clean our table
 # Step 2: Cleaning data
@@ -68,9 +69,9 @@ output
 3  1959  Aston Martin DB4 GT      245.0           75
 4  1963     Iso Grifo GL 365      259.0     over 400
 ```
-Better, much better.  We now have a cleaned table that is much easier to follow.
+This is better, much better.  We now have a cleaned table that is much easier to follow.
 
-Now let's scrape data from the Provo Wikipedia page and use the same code as above with this Provo wiki url but specify the table we want. I want to look at table 4 to look at the top Employers in Provo.  We will repeat steps 1 and 2 for this tutorial to now handle a new table that we want to scrape and clean.
+Now let's scrape data from the Provo Wikipedia page and use the same code as above with the Provo wiki url but specify the table we want. I want to look at table 4 to look at the top Employers in Provo.  We will repeat steps 1 and 2 for this tutorial to now handle a new table that we want to scrape and clean.
 
 # Repeat Step 1: Scraping data from another wikipedia page
 ```
@@ -96,7 +97,7 @@ output
 9  10                Nu Skin International        500-999
 ```
 
-This table is already pretty readable, it is no surprise that BYU is the #1 Employer with all of the people that they employ.   To make the table a little cleaner, we will just get rid of the numbered column and rename the # of Employees column.
+This table is already pretty readable, it is no surprise that BYU is the #1 Employer with all of the people that they employ.  To make the table a little cleaner, we will just get rid of the numbered column and rename the # of Employees column.
 
 # Repeat Step 2: Cleaning data
 
@@ -205,6 +206,11 @@ print(df)
 df.to_csv('employee_data.csv', index=False)
 
 ```
-Conclusion: Beautiful soup is a great library to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  I have provided a cheat sheet for you to use to try out some more of your own web scraping here. {https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt}
+Here is the Employee data csv. file we saved our data to ![employee_data.csv](C:\Users\bekah\OneDrive\Documents\Stat 386\bekahwebb.github.io\employee_data.csv)
+
+# Conclusion:
+
+ Beautiful soup is a great library to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  I have provided a cheat sheet for you to use to try out some more of your own web scraping here. ![Beutifulsoupcheetsheet.ipynb]{https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt}
 Have a beautiful time using beautiful soup for your webscraping needs. Enjoy the soup!
+![imagesoups1.png](<../assets/images/Screenshot 2023-10-11 225746.png>))
 

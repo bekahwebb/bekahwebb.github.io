@@ -212,5 +212,5 @@ Here is the Employee data csv. file we saved our data to ![employee_data.csv](C:
 
  Beautiful soup is a great library to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  I have provided a cheat sheet for you to use to try out some more of your own web scraping here. ![Beutifulsoupcheetsheet.ipynb]{https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt}
 Have a beautiful time using beautiful soup for your webscraping needs. Enjoy the soup!
-![imagesoups1.png](<../assets/images/Screenshot 2023-10-11 225746.png>))
+![imagesoup1.png](C:\Users\bekah\OneDrive\Documents\Stat 386\bekahwebb.github.io\assets\images\imagesoups1.png)
 

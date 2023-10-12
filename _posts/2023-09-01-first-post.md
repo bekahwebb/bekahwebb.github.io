@@ -11,7 +11,7 @@ This is a simple tutorial to show how to use beautiful soup4 in python to parse 
 Let's start with an example of web scraping from a wikipedia table on production car speed records
 Before we begin this tutorial, open up your favorite python notetbook and begin trying out the code by installing these packages.  We import pandas for our code such as pd.read.  Next we import requests so that we may use the code below for for our page = requests.get(url).  From bs4 we import BeautifulSoup for webscraping.  Our last import will be used for our data cleaning code, re which is the Python module for regular expressions. Regular expressions are used for pattern matching and text manipulation.
 
- # Step 1: Scraping data 
+ # Step 1: Scraping data
 
  ``` 
 import pandas as pd

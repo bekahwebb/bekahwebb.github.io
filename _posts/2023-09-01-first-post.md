@@ -126,7 +126,7 @@ output
 ```
 I encourage you to use step 1 to find your own pages to scrape, and find the specific table that you want to use, and then do step 2 to clean your data and make the table look how you want.
 
-Now let's try web scraping news headlines from the BBC.
+# Next, let's web scrape news headlines from the BBC.
 
 ```
 #Here's my code:
@@ -189,10 +189,10 @@ l...  N/A
 
 ```
 
-Webscraping is a great tool to use to find data that you don't already have collected. 
+Webscraping is a great tool to use to find data that you don't already have collected. This data can be used to do further analysis on for yourself or a company that you may work for.
 
 # Lastly, let's save our scraped data to a csv file. 
-Data Storage: In a real project, consider storing the scraped data in a structured format like CSV, JSON, or a database for further analysis.  We'll use our code from our webscraping example we did for step 1 repeated and save the Number of Provo Employees table to a csv file.
+Data Storage: In a real project, consider storing the scraped data in a structured format like CSV, JSON, or a database for further analysis.  We'll use our code from our webscraping example we did for step 1 repeated and save the Number of Provo Employees table to a csv file.  This file can be shared with others who might want to do statistical analyses on or have record of the data for a study etc.
 
 ```
 import pandas as pd
@@ -209,7 +209,13 @@ df.to_csv('employee_data.csv', index=False)
 
 # Conclusion:
 
- Beautiful soup is a great library to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more effort.  I have provided a cheat sheet for you to use to try out some more of your own web scraping [here](https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt)
+ Beautiful soup is a great library to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more work.  I have provided a cheat sheet for you to use to try out some more of your own web scraping [here](https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt)
 Have a beautiful time using beautiful soup for your webscraping needs. Enjoy the soup!
 
-![imagesoup1.png]({{site.url}}/{{site.baseurl}}/assets/images/imagesoup1.png)
+[imagesoup1.png]{{site.url}}/{{site.baseurl}}/assets/images/imagesoup1.png)
+
+In Header:
+image: "/assets/images/AIGenerated/FutureTypewriter.png"
+
+In body:
+<img src="{{site.url}}/{{site.baseurl}}/assets/images/AIGenerated/CatLaptop.png" alt="" style="width:100px;"/>

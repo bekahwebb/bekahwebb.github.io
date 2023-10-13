@@ -10,7 +10,7 @@ image: /assets/images/imagesoups1.png
 This is a simple tutorial to show how to use beautiful soup4 in python to parse HTML data. From their site [here](https://www.crummy.com/software/BeautifulSoup/) we learn that Beautiful Soup is a Python library for pulling data out of HTML and XML files. Keep in mind that there are some sites that may not be ethical to scrape. Respect Website Policies: Before scraping any website, make sure to check the website's 'robots.txt' file to see if web scraping is allowed or prohibited. Some websites might have terms of use that you need to adhere to.  For this tutorial, I checked the robots.txt for the sites that I scraped data, Wikipedia and the BBC fit the criteria for approved web scraping.
 
 Let's start with an example of web scraping from a wikipedia table on production car speed records.
-Before we begin this tutorial, open up your favorite python notetbook and begin trying out the code by installing these packages.  I imported pandas for my python code for example, pd.read.  Next we import requests so that we may use the code below for for our page = requests.get(url).  From bs4 we import BeautifulSoup for webscraping.  Our last import will be used for our data cleaning code, re which is the Python module for regular expressions. Regular expressions are used for pattern matching and text manipulation. 
+Before we begin this tutorial, open up your favorite python notetbook and begin trying out the code by installing these packages.  I imported pandas so I can use commands like, pd.read.  Next we import requests so that we may use the code below for for our page = requests.get(url).  From bs4 we import BeautifulSoup for webscraping.  Our last import will be used for our data cleaning code, re which is the Python module for regular expressions. Regular expressions are used for pattern matching and text manipulation. 
 
 # Step 1: Scraping Data
 
@@ -50,11 +50,13 @@ output
 3              Tested by Autosport in December 1961.  
 4  Tested by Autocar in 1966. A total of 412 Iso ...  
 ```
-We have some cleaning to do to organize our table so that our headings are in a row together and we get rid of extra dots etc.
+We have some cleaning to do to organize our table so that our headings are in a row together and we get rid of spaces and things we don't need.
 
-Here's code to clean our table
+
 # Step 2: Cleaning data
+
 ```
+# Here's code to clean our table
 df = df.rename(columns={'Number\nbuilt[10]': 'Number built'})
 df = df[['Year', 'Make and model', 'Top speed', 'Number built']]
 df['Top speed'] = df['Top speed'].apply(lambda x: re.findall('\d+\.?\d*', x)[0])
@@ -71,7 +73,7 @@ output
 ```
 This is better, much better.  We now have a cleaned table that is much easier to follow.
 
-Now let's scrape data from the Provo Wikipedia page and use the same code as above with the Provo wiki url but specify the table we want. I want to look at table 4 to look at the top Employers in Provo.  We will repeat steps 1 and 2 for this tutorial to now handle a new table that we want to scrape and clean.
+Now let's scrape data from the Provo Wikipedia page and use the same code as above with the Provo wiki url but specify the table we want. I want to look at table 4, to see a list of the top Employers in Provo.  We will repeat steps 1 and 2 for this tutorial to now handle a new table that we want to scrape and clean.
 
 # Repeat Step 1: Scraping data from another wikipedia page
 ```
@@ -97,7 +99,7 @@ output
 9  10                Nu Skin International        500-999
 ```
 
-This table is already pretty readable, it is no surprise that BYU is the #1 Employer with all of the people that they employ.  To make the table a little cleaner, we will just get rid of the numbered column and rename the # of Employees column.
+This table is already pretty readable, and on a side note, it is no surprise that BYU is the #1 Employer with all of the people that they employ.  To make the table a little cleaner, we will just get rid of the numbered column and rename the # of Employees column.
 
 # Repeat Step 2: Cleaning data
 
@@ -192,7 +194,7 @@ l...  N/A
 Webscraping is a great tool to use to find data that you don't already have collected. This data can be used to do further analysis for yourself or a company that you may work for.
 
 # Lastly, let's save our scraped data to a csv file. 
-Data Storage: In a real project, consider storing the scraped data in a structured format like CSV, JSON, or a database for further analysis.  We'll use our code from our webscraping example we did for step 1 repeated and save the Number of Provo Employees table to a csv file.  This file can be shared with others who might want to do statistical analysis or ues for their own research.
+Data Storage: In a real project, consider storing the scraped data in a structured format like CSV, JSON, or a database for further analysis.  We'll use our code from our webscraping example we did for step 1 repeated and save the Number of Provo Employees table to a csv file.  This file can be shared with others who might want to do statistical analysis or use the data for their own research.
 
 ```
 import pandas as pd
@@ -209,17 +211,8 @@ df.to_csv('employee_data.csv', index=False)
 
 # Conclusion:
 
- Beautiful soup is a great library to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more work.  I have provided a cheat sheet for you to use to try out some more of your own web scraping [here](https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt)
+ Beautiful soup is a great library to use in python to webscrape.  Web scraping can be fun, and the actual scraping does not require too much effort but the cleaning can be trickier and requires more work. I have provided a cheat sheet for you to use to try out some more of your own web scraping [here](https://colab.research.google.com/drive/1RkSNKqSQ0secm5wEArBssNVQh0SQ1yLR#scrollTo=e5t-IL_NjXkt)
 Have a beautiful time using beautiful soup for your webscraping needs. Enjoy the soup!
 
-![imagesoup1.png]({{site.url}}/{{site.baseurl}}/assets/images/imagesoup1.png)
+![imagesoup1.png](/assets/images/imagesoup1.png)
 
-![Figure]({{site.url}}/{{site.baseurl}}/assets/images/image5.jpg)
-
-In Header:
-image: "/assets/images/AIGenerated/FutureTypewriter.png"
-
-In body:
-<img src="{{site.url}}/{{site.baseurl}}/assets/images/AIGenerated/CatLaptop.png" alt="" style="width:100px;"/>
-
-[image:"assets\images\Screenshot 2023-10-13 095044.png"]image src="{{site.url}}/{{site.baseurl}}/assets/images/Screenshot 2023-10-13.png" alt="" style="width:100px;"/>

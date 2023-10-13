@@ -74,6 +74,11 @@ Markdown syntax for including images is `![Fig Name](path/to/image)`.  For examp
 ```
 ![Figure]({{site.url}}/{{site.baseurl}}/assets/images/image5.jpg)
 
+
+![Figure](/assets/images/image5.jpg)
+
+![Figure2](/assets/images/image5.jpg)
+
 ---
 ---
 

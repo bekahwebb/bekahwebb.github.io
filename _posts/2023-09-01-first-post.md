@@ -215,8 +215,11 @@ Have a beautiful time using beautiful soup for your webscraping needs. Enjoy the
 ![imagesoup1.png]({{site.url}}/{{site.baseurl}}/assets/images/imagesoup1.png)
 
 ![Figure]({{site.url}}/{{site.baseurl}}/assets/images/image5.jpg)
+
 In Header:
 image: "/assets/images/AIGenerated/FutureTypewriter.png"
 
 In body:
 <img src="{{site.url}}/{{site.baseurl}}/assets/images/AIGenerated/CatLaptop.png" alt="" style="width:100px;"/>
+
+[image:"assets\images\Screenshot 2023-10-13 095044.png"]image src="{{site.url}}/{{site.baseurl}}/assets/images/Screenshot 2023-10-13.png" alt="" style="width:100px;"/>

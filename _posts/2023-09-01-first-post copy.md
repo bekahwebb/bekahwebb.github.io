@@ -165,11 +165,10 @@ plt.tight_layout()
 plt.show()
 
 Output
-![cost_hist.png](/assets/images/cost_hist.pngimage.png)
-
-![imagesoup1.png](/assets/images/imagesoup1.png)
-
 ```
+![cost_hist.png](/assets/images/cost_hist.png)
+
+
 There are two campsites with the max cost.  I wanted to examine the details of the row with Camp Round Meadow.
 
 ```
@@ -226,5 +225,5 @@ df.to_csv('employee_data.csv', index=False)
 # Looking forward:
  In my next blog post I will go through more visualizations as I analyze potential correlation between cost of campsite, and reserved vs. first come first serve campsites, and location of campsite with latitude, longitude and zip code.
 
-![imagesoup1.png](/assets/images/imagesoup1.png)
+![camp2.png](/assets/images/camp2.png)
 

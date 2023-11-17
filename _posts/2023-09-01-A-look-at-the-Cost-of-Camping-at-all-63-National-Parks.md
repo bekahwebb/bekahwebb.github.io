@@ -7,11 +7,11 @@ image: /assets/images/camping.png
 ---
 # Introduction:
 
-My family and I like to go camping, typically in Utah, at the National Parks down south.  We have camped in various parts of the country and found the camping fees to be pretty reasonable.  I thought it might be interesting to look at the data of the National Park service, NPS and find the most expensive campgrounds of the different National Parks around the country.  I want to explore the data of the NPS and see if there are is any correlations between cost of campsite and first come first serve campsites vs. reserved campsites.  I also want to explore the location of the campsite and see if there is correlation between cost and latitude and longitude and zip code of the campsite to see if the location affects the higher campsite costs.
+My family and I like to go camping, typically in Utah, at the National Parks down south.  We have camped in various parts of the country and found the camping fees to be pretty reasonable.  I thought it might be interesting to look at the data of the National Park service, NPS and find the most expensive campgrounds of the different National Parks around the country.  I want to explore the data of the NPS and see if there is any correlation between cost of campsite with first come first serve campsites vs. reserved campsites.  I also want to explore the location of the campsite and see if there is correlation between cost and latitude and longitude with zip code of the campsite to see if the location affects the higher campsite costs.
 
 # Scraping the NPS Data
 
-I started with registering with the NPS for an apikey which they emailed me.  I then loaded in the libraries including a pd.set_option to display all the columns in case there were any embedded columns that I couldn't examine.  Then I put a url request in to the NPS API for the camping data.
+I started with registering with the NPS for an apikey which they emailed me.  I then loaded in the libraries including a pd.set_option to display all the columns in case there were any embedded columns that I couldn't examine.  Then I put a url request to NPS for the camping data.
 
 ``` 
 file = open('nps_apikey.txt', 'r') 
@@ -125,7 +125,7 @@ data.to_csv('nps_camp.csv')
 Next I examined the different statistics of my data by performing a describe function.
 ```
 # Examining data
-We can look at the statistics of our variable in our data set by using a describe function.
+We can look at the statistics of our variables in our data set by using a describe function.
 
 ```
 data.describe()
@@ -223,7 +223,7 @@ df.to_csv('employee_data.csv', index=False)
  In this blog post I wanted to scrape data from the National Park Service using an API.  I cleaned and organized the scraped data and saved it to a csv file. I wanted to look at the most expensive campsite.  I plotted a histogram and examined details further for each row.
 
 # Looking forward:
- In my next blog post I will go through more visualizations as I analyze potential correlation between cost of campsite, and reserved vs. first come first serve campsites, and location of campsite with latitude, longitude and zip code.
+ In my next blog post I will go through more visualizations as I analyze potential correlation between cost of campsite with reserved vs. first come first serve campsites, and location of campsite with latitude, longitude and zip code.
 
 ![camp2.png](/assets/images/camp2.png)
 

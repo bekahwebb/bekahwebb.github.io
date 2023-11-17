@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The Beauty of Beautiful Soup 4: A Powerful Tool for Web Scraping and Data Cleaning in Python."
+title:  "The Cost of Camping."
 author: Rebekah Webb
 description: This is a Comprehensive Beautiful Soup Tutorial.
 image: /assets/images/imagesoups1.png

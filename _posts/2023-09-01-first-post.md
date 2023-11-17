@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The Cost of Camping."
+title:  "The Beauty of Beautiful Soup."
 author: Rebekah Webb
 description: This is a Comprehensive Beautiful Soup Tutorial.
 image: /assets/images/imagesoups1.png

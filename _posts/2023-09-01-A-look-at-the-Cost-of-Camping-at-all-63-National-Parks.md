@@ -216,6 +216,37 @@ print(df)
 # Save the modified DataFrame to a CSV file
 df.to_csv('employee_data.csv', index=False)
 
+ Truncated Output
+Top 10 most expensive campgrounds:
+     Unnamed: 0                                    ID  \
+103         103  D378656F-72C7-4F18-A3CC-741CBEE9B394   
+105         105  905221FE-094D-4E73-90EB-205CBCAD69AA   
+95           95  2D5D7B26-19D2-4583-A370-86575EA22C2F   
+91           91  9CAD260F-57A8-4814-87FA-E61D14108C81   
+94           94  67817EE3-C197-45DD-AEF0-E5E86061691B   
+92           92  CBA8D848-FB74-4492-9E5D-E1E4979A976B   
+93           93  B26D8D06-514E-4230-A314-CF0ED2023B98   
+254         254  6A989D7D-8AA1-432E-A915-337BB2B45E4C   
+141         141  2E829940-0ECC-49A7-85FB-F0AE8D45EBA0   
+178         178  665A07F7-CD99-401A-8674-4C65AC41954C   
+
+                                   Name Park Code   Latitude   Longitude  \
+103                       Camp Greentop      cato  39.644541  -77.476565   
+105                   Camp Round Meadow      cato  39.644917  -77.487628   
+95   Cabin Camp 5 (By Reservation Only)      prwi  38.575779  -77.412568   
+91   Cabin Camp 1 (By Reservation Only)      prwi  38.597018  -77.356053   
+94   Cabin Camp 4 (By Reservation Only)      prwi  38.591509  -77.353861   
+92   Cabin Camp 2 (By Reservation Only)      prwi  38.581375  -77.415737   
+93   Cabin Camp 3 (By Reservation Only)      prwi  38.563672  -77.364930   
+254                      Group Campsite      care  38.278900 -111.251400   
+141                  Colter Bay RV Park      grte  43.905642 -110.641324   
+178                   Dunbar Group Site      indu  41.682660  -87.001714   
+...
+93   This is the price to rent out the group part o...  55347       Triangle  
+254   Nightly cost to stay at the group site in Fruita  84775         Torrey  
+141  Fee per night for campers with vehicle. All in...  83013          Moran  
+178  The group site rate is valid for up to 30 peop...  46304         Porter 
+
 ```
 
 # Conclusion:

@@ -170,8 +170,6 @@ plt.title('Top 10 Campground Costs')
 plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 plt.show()
-
-Output
 ```
 ![cost_hist.png](/assets/images/cost_hist.png)
 

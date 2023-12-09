@@ -124,6 +124,13 @@ data.reset_index(drop=True, inplace=True)
 data.to_csv('nps_camp.csv') 
 Next I examined the different statistics of my data by performing a describe function.
 ```
+# A link to the file path of my csv file
+```
+file_path = 'C:\\Users\\bekah\\github-classroom\\s386Fall2023\\lab-06-bekahwebb\nps_camp.csv'
+# Read the CSV file into a DataFrame
+camp_data = pd.read_csv(file_path)
+```
+
 # Examining data
 We can look at the statistics of our variables in our data set by using a describe function.
 
@@ -169,7 +176,7 @@ Output
 ![cost_hist.png](/assets/images/cost_hist.png)
 
 
-There are two campsites with the max cost.  I wanted to examine the details of the row with Camp Round Meadow.
+There are two campsites with the max cost.  I wanted to examine the details of the row with Camp Greentop Park.
 
 ```
 # Filter out rows where 'Cost' is NaN
@@ -206,15 +213,10 @@ Name: 103, dtype: object
 
 I then wanted to look at the top 10 most expensive campsites.
 ```
-import pandas as pd
-# Rename the 'Employee' column to 'Number of Employees'
-df = df.rename(columns={'# of Employees': 'Number of Employees'})
-# Select specific columns
-df = df[['Employer', 'Number of Employees']]
-# Print the cleaned DataFrame
-print(df)
-# Save the modified DataFrame to a CSV file
-df.to_csv('employee_data.csv', index=False)
+# Find the top 10 most expensive campgrounds
+top_10_expensive = camp_data.nlargest(10, 'Cost')
+print("Top 10 most expensive campgrounds:")
+print(top_10_expensive)
 
  Truncated Output
 Top 10 most expensive campgrounds:

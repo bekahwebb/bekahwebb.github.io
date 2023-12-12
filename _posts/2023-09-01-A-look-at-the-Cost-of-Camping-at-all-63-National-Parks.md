@@ -126,7 +126,7 @@ Next I examined the different statistics of my data by performing a describe fun
 ```
 # A link to the file path of my csv file
 ```
-file_path = 'C:\\Users\\bekah\\github-classroom\\s386Fall2023\\lab-06-bekahwebb\nps_camp.csv'
+file_path = 'C:\\Users\\bekah\\github-classroom\\s386Fall2023\\lab-06-bekahwebb\\nps_camp.csv'
 # Read the CSV file into a DataFrame
 camp_data = pd.read_csv(file_path)
 ```

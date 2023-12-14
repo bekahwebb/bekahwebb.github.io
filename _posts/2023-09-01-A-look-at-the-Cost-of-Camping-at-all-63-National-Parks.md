@@ -3,17 +3,19 @@ layout: post
 title:  "A look at the Cost of Camping at all 63 National Parks."
 author: Rebekah Webb
 description: This is an Exploratory Data Analysis.
-image: /assets/images/camping.png
+image: /assets/images/Camping1.png
 ---
 # Introduction:
 
 My family and I like to go camping, typically in Utah, at the National Parks down south.  We have camped in various parts of the country and found the camping fees to be pretty reasonable.  I thought it might be interesting to look at the data of the National Park service, NPS and find the most expensive campgrounds of the different National Parks around the country.  I want to explore the data of the NPS and see if there is any correlation between cost of campsite with first come first serve campsites vs. reserved campsites.  I also want to explore the location of the campsite and see if there is correlation between cost and latitude and longitude with zip code of the campsite to see if the location affects the higher campsite costs.
 
+Before I scraped the data, I needed to check that it's ethical to do so.  The National Park Service uses an API to interface with their data.  API stand for Application Programming Interface.  The word application in this context is referring to any software with a distinct function.  Interface can be thought of as a two way contract between you and the Organization that you want to collect data from. You send out requests using their specified documentation code and they will respond with a success or denial for your request.  The ethics in this case of whethor you can gather this data is determined by a yes response.  I also should be mindful to not send too many requests to the NPS and use the data responsibly. I determined I am using this data in an educational, ethical way. I then proceeded to register with the NPS for an apikey which they emailed me to start a sort of contract with the NPS.
+
+
 # Scraping the NPS Data
+  I then loaded in the libraries including a pd.set_option to display all the columns in case there were any embedded columns that I couldn't examine.  Then I put a url request to NPS for the camping data.
 
-I started with registering with the NPS for an apikey which they emailed me.  I then loaded in the libraries including a pd.set_option to display all the columns in case there were any embedded columns that I couldn't examine.  Then I put a url request to NPS for the camping data.
-
-``` 
+```python 
 file = open('nps_apikey.txt', 'r') 
 api_key = file.read().strip()
 import pandas as pd
@@ -42,19 +44,20 @@ if response.status_code == 200:
 else:
     # Request failed
     print(f"Failed to retrieve data. Status code: {response.status_code}")
-
+```
 My request was successful and my output looked like this:
+```python
 output
  
 id	url	name	parkCode	description	latitude	longitude	latLong	audioDescription	isPassportStampLocation	passportStampLocationDescription	passportStampImages	geometryPoiId	reservationInfo	reservationUrl	regulationsurl	regulationsOverview	fees	directionsOverview	directionsUrl	operatingHours	addresses	images	weatherOverview	numberOfSitesReservable	numberOfSitesFirstComeFirstServe	multimedia	relevanceScore	lastIndexedDate	amenities.trashRecyclingCollection	amenities.toilets	amenities.internetConnectivity	amenities.showers	amenities.cellPhoneReception	amenities.laundry	amenities.amphitheater	amenities.dumpStation	amenities.campStore	amenities.staffOrVolunteerHostOnsite	amenities.potableWater	amenities.iceAvailableForSale	amenities.firewoodForSale	amenities.foodStorageLockers	contacts.phoneNumbers	contacts.emailAddresses	campsites.totalSites	campsites.group	campsites.horse	campsites.tentOnly	campsites.electricalHookups	campsites.rvOnly	campsites.walkBoatTo	campsites.other	accessibility.wheelchairAccess	accessibility.internetInfo	accessibility.cellPhoneInfo	accessibility.fireStovePolicy	accessibility.rvAllowed	accessibility.rvInfo	accessibility.rvMaxLength	accessibility.additionalInfo	accessibility.trailerMaxLength	accessibility.adaInfo	accessibility.trailerAllowed	accessibility.accessRoads	accessibility.classifications
 0	EA81BC45-C361-437F-89B8-5C89FB0D0F86	https://www.nps.gov/amis/planyourvisit/277-nor...	277 North Campground	amis	277 North Campground is generally open year-ro...	29.512373695509215	-100.90816633365614	{lat:29.512373695509215, lng:-100.90816633365614}	277 North Campground is generally open year-ro...	0		[]	582AB459-28A8-453A-B22E-BAD481E92098	Standard overnight camping is first-come, firs...	https://www.recreation.gov/camping/campgrounds...	https://cms.nps.gov/amis/learn/management/comp...	Site capacity is not to exceed eight persons a...	[{'cost': '6.00', 'description': 'Sites are av...	Directions from Amistad National Recreation Ar...		[{'exceptions': [], 'description': '277 North ...	[]	[{'credit': 'NPS Photo', 'crops': [], 'title':...	The climate at Amistad is semi-arid in moistur...	1	17	[]	1.0		Yes - year round	[Vault Toilets - year round]	No	[None]	Yes - year round	No	No	No	No	No	[No water]	No	No	No	[]	[{'description': '', 'emailAddress': 'AMIS_Int...	18	1	0	0	0	0	0	0	Limited. However, some sites do have a cement ...			Ground fires are not permitted. Each campsite ...	1	RV and Trailers are permitted	0		0	The main road leading to the campground is pav...	1	[Paved Roads - All vehicles OK]	[Limited Development Campground] 
-```
-This is just the first row of code so there are definitly a lot of columns to go through to get to the heart of what my data analysis is.  There is a lot of text and url websites etc. that I just don't need so I organized my columns by printing the columns of my data and commenting out the ones that I don't want and making a copy for python to read the new copy of my data.
-
-
+``````
 # Organizing data columns
 
-```
+When examining the first row of code output, it is apparent, there are definitly a lot of columns to go through to get to the heart of what my data analysis will examine.  There is a lot of text and url websites that I don't need so I organized my columns by printing the columns of my data and commenting out the ones that I don't want and making a copy of of my new data columns.
+
+
+```python
 data.columns
 
 output
@@ -95,10 +98,10 @@ output
        #'accessibility.trailerAllowed', 'accessibility.accessRoads',
        'accessibility.classifications']].copy()
 ```
-Next I cleaned the data by pulling two variables out of two of the columns: fees and addresses and made individual columns of cost, description, zip, and city.  I wanted to examine the description column closer to see if the output would be useful.  It was really messy in putting random text in different rows and it didn't give me to much information about why the camp charged the cost that it did so I dropped description from the dataset.  I renamed the columns by making a dictionary list, and my output showed the data output I wanted.
 
 # Cleaning the data and renaming columns
-```
+Next I cleaned the data by pulling two variables out of two of the columns: fees and addresses and made individual columns of cost, description, zip, and city.  I wanted to examine the description column closer to see if the output would be useful.  It was really messy in putting random text in different rows and it didn't give me to much information about why the camp charged the cost that it did so I dropped description from the dataset.  I renamed the columns by making a dictionary list, and my output showed the data output I wanted.
+```python
 # Split 'fees' column into 'fees' and 'description'
 data[['cost', 'description']] = pd.DataFrame(data['fees'].apply(lambda x: [x[0]['cost'], x[0]['description']] if x else [None, None]).tolist(), index=data.index)
 # Split 'addresses' column into 'zip' and 'city'
@@ -118,23 +121,17 @@ output
 	Unnamed: 0	ID	Name	Park Code	Latitude	Longitude	Number Of Sites Reservable	Number Of Sites First Come First Serve	Accessibility Classifications	Cost	Zip	City
 0	0	EA81BC45-C361-437F-89B8-5C89FB0D0F86	277 North Campground	amis	29.512374	-100.908166	1	17	['Limited Development Campground']	6.0	NaN	NaN
 ```
-# Saving data to a CSV file to work with cleaned data.
-```
+Saving data to a CSV file to work with cleaned data.
+```python
 data.reset_index(drop=True, inplace=True)
 data.to_csv('nps_camp.csv') 
 Next I examined the different statistics of my data by performing a describe function.
 ```
-# A link to the file path of my csv file
-```
-file_path = 'C:\\Users\\bekah\\github-classroom\\s386Fall2023\\lab-06-bekahwebb\\nps_camp.csv'
-# Read the CSV file into a DataFrame
-camp_data = pd.read_csv(file_path)
-```
 
-# Examining data
-We can look at the statistics of our variables in our data set by using a describe function.
+Examining the Statistics in my Camp Data:
+We can look at the averages, the count, quantile percentages, min and max of our variables in our data set by using a describe function.
 
-```
+```python
 data.describe()
 
 output
@@ -148,12 +145,12 @@ min	0.000000	18.352310	-156.237592	0.000000	0.000000	0.000000
 75%	476.000000	45.932857	-83.621052	37.000000	10.000000	28.000000
 max	637.000000	63.733360	-64.754081	432.000000	10000.000000	1000.000000
 ```
-I was blown away by the campground max cost of $1000.  I was not expecting a campground to be that expensive.  We can further investigate the stats on the campground with camp stats and location and see if we can find some more answers for the most expensive campground.
+I was blown away by the campground max cost of $1000.  I was not expecting a campground to be that expensive. 
 
 I am going to plot the data on a histogram and see the most expensive campsites.  This will also show the very expensive outliers.
 # Visualizations
 
-```
+```python
 import matplotlib.pyplot as plt
 # Convert 'Cost' column to numeric (remove dollar signs, convert to float)
 #data['Cost'] = pd.to_numeric(data['Cost'].replace('[\$,]', '', regex=True), errors='coerce')
@@ -176,7 +173,7 @@ plt.show()
 
 There are two campsites with the max cost.  I wanted to examine the details of the row with Camp Greentop Park.
 
-```
+```python
 # Filter out rows where 'Cost' is NaN
 data = data.dropna(subset=['Cost'])
 # Find the index of the maximum value in the 'Cost' column
@@ -210,7 +207,7 @@ Name: 103, dtype: object
 # Further Investigation 
 
 I then wanted to look at the top 10 most expensive campsites.
-```
+```python
 # Find the top 10 most expensive campgrounds
 top_10_expensive = camp_data.nlargest(10, 'Cost')
 print("Top 10 most expensive campgrounds:")
@@ -241,7 +238,6 @@ Top 10 most expensive campgrounds:
 254                      Group Campsite      care  38.278900 -111.251400   
 141                  Colter Bay RV Park      grte  43.905642 -110.641324   
 178                   Dunbar Group Site      indu  41.682660  -87.001714   
-...
 93   This is the price to rent out the group part o...  55347       Triangle  
 254   Nightly cost to stay at the group site in Fruita  84775         Torrey  
 141  Fee per night for campers with vehicle. All in...  83013          Moran  
@@ -251,10 +247,20 @@ Top 10 most expensive campgrounds:
 
 # Conclusion:
 
- In this blog post I wanted to scrape data from the National Park Service using an API.  I cleaned and organized the scraped data and saved it to a csv file. I wanted to look at the most expensive campsite.  I plotted a histogram and examined details further for each row.
+ In this blog post I wanted to scrape data from the National Park Service using an API.  I cleaned and organized the scraped data and saved it to a csv file that I can use to write further code for my project, and my streamlit app. I wanted to look at the most expensive campsites.  I plotted a histogram and examined details further for each row to try to understand more details about the top camping costs from my dataset.
 
-# Looking forward:
- In my next blog post I will go through more visualizations as I analyze potential correlation between cost of campsite with reserved vs. first come first serve campsites, and location of campsite with latitude, longitude and zip code.
+# Looking Forward
+ In my next blog post I want to answer these questions with my camp data:
+  - Is there potential correlation between cost of campsite with reserved vs. first come first serve campsites, and location of campsite with latitude, longitude and zip code?
 
-![camp2.png](/assets/images/camp2.png)
+- What are the cost outliers in my data?
+- Does my data follow a Normal or a Power Law Distribution? 
+- What the are the Costs of campgrounds by Zip code regions?
+- How does Utah's camping costs compare to surrounding states?
+- What the frequency of Park Codes, ie total campsites per Park Code in my data?
 
+I am curious about what I will find in examining this data further. 
+
+![Nature_camp.png](/assets/images/Nature_camp.png)
+
+# Link to my [github repository code and nps_camp.csv file]('https://github.com/bekahwebb/Camp_Blog_Code).

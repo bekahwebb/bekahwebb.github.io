@@ -100,7 +100,7 @@ output
 ```
 
 # Cleaning the data and renaming columns
-Next I cleaned the data by pulling two variables out of two of the columns: fees and addresses and made individual columns of cost, description, zip, and city.  I wanted to examine the description column closer to see if the output would be useful.  It was really messy in putting random text in different rows and it didn't give me to much information about why the camp charged the cost that it did so I dropped description from the dataset.  I renamed the columns by making a dictionary list, and my output showed the data output I wanted.
+Next I cleaned the data by pulling two variables out of two of the columns: fees and addresses and made individual columns of cost, description, zip, and city.  I wanted to examine the description column closer to see if the output would be useful.  It was really messy, there was random text in different rows and it didn't give me too much information. I dropped description from the dataset.  I renamed the columns by making a dictionary list, and my output showed the data output I wanted.
 ```python
 # Split 'fees' column into 'fees' and 'description'
 data[['cost', 'description']] = pd.DataFrame(data['fees'].apply(lambda x: [x[0]['cost'], x[0]['description']] if x else [None, None]).tolist(), index=data.index)
@@ -129,7 +129,7 @@ Next I examined the different statistics of my data by performing a describe fun
 ```
 
 Examining the Statistics in my Camp Data:
-We can look at the averages, the count, quantile percentages, min and max of our variables in our data set by using a describe function.
+I looked at the averages, the count, quantile percentages, min and max of the variables in the camp data set by using a describe function.
 
 ```python
 data.describe()
@@ -247,7 +247,7 @@ Top 10 most expensive campgrounds:
 
 # Conclusion:
 
- In this blog post I wanted to scrape data from the National Park Service using an API.  I cleaned and organized the scraped data and saved it to a csv file that I can use to write further code for my project, and my streamlit app. I wanted to look at the most expensive campsites.  I plotted a histogram and examined details further for each row to try to understand more details about the top camping costs from my dataset.
+ In this blog post I scraped data from the National Park Service using an API.  I cleaned, organized, and saved it to a csv file. I looked at the most expensive campsites in my data set.  I looked at the top costs of campgrounds by plotting a histogram. I examined details further for the top 10 campground costs and discovered the more fancy camping across the country.  With the data and I can do further analysis for my next blog post, and create my streamlit app.
 
 # Looking Forward
  In my next blog post I want to answer these questions with my camp data:

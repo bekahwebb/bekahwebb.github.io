@@ -251,16 +251,15 @@ Top 10 most expensive campgrounds:
 
 # Looking Forward
  In my next blog post I want to answer these questions with my camp data:
-  - Is there potential correlation between cost of campsite with reserved vs. first come first serve campsites, and location of campsite with latitude, longitude and zip code?
-
+- Is there potential correlation between cost of campsite with reserved vs. first come first serve campsites, and location of campsite with latitude, longitude and zip code?
 - What are the cost outliers in my data?
 - Does my data follow a Normal or a Power Law Distribution? 
 - What the are the Costs of campgrounds by Zip code regions?
 - How does Utah's camping costs compare to surrounding states?
 - What the frequency of Park Codes, ie total campsites per Park Code in my data?
 
-I am curious about what I will find in examining this data further. 
+Here is a link to my [github repository]('https://github.com/bekahwebb/Camp_Blog_Code). It contains my code and data.
+
 
 ![Nature_camp.png](/assets/images/Nature_camp.png)
 
-# Link to my [github repository]('https://github.com/bekahwebb/Camp_Blog_Code).

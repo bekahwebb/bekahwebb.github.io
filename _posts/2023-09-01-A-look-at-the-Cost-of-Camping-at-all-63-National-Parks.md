@@ -263,4 +263,4 @@ I am curious about what I will find in examining this data further.
 
 ![Nature_camp.png](/assets/images/Nature_camp.png)
 
-# Link to my [github repository code and nps_camp.csv file]('https://github.com/bekahwebb/Camp_Blog_Code).
+# Link to my [github repository]('https://github.com/bekahwebb/Camp_Blog_Code).

@@ -258,7 +258,7 @@ Top 10 most expensive campgrounds:
 - How does Utah's camping costs compare to surrounding states?
 - What the frequency of Park Codes, ie total campsites per Park Code in my data?
 
-Here is a link to my [github repository]('https://github.com/bekahwebb/Camp_Blog_Code). It contains my code and data.
+Here is a link to my [github repository]('https://github.com/bekahwebb/Camp_Blog_Code'). It contains the code I used for both this blog post and the next post and data.
 
 
 ![Nature_camp.png](/assets/images/Nature_camp.png)
